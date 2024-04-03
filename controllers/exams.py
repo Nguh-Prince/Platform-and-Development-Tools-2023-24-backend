@@ -7,13 +7,31 @@ from werkzeug.utils import secure_filename
 
 from constants import UPLOAD_FOLDER
 
-def get_all_exams():
-    return Exam.read()
+def get_all_exams(return_objects=False):
+    """
+    Set return_objects to True if you want to return a 
+    model instance instead of JSON
+    """
+    objects = Exam.read()
 
-def get_exam_with_id(id):
-    return Exam.read(id)
+    if not return_objects:
+        list_of_objects = [
+            obj.toJSON() for obj in objects
+        ]
+        return list_of_objects
+    
+    return objects
 
-def save_exam(subject, academic_year, session, duration, id=None, uploaded_files=None):
+def get_exam_with_id(id, return_object=False):
+    """
+    Set return_object to True if you want to return a 
+    model instance instead of JSON
+    """
+    obj = Exam.read(id)
+
+    return obj if return_object else obj.toJSON()
+
+def save_exam(subject, academic_year, session, duration, id=None, uploaded_files=None, return_object=False):
     if id != None:
         exam = get_exam_with_id(id)
         exam.subject, exam.academic_year, exam.session, exam.duration = (
@@ -36,8 +54,10 @@ def save_exam(subject, academic_year, session, duration, id=None, uploaded_files
             os.path.join(UPLOAD_FOLDER, file_name)
         )
 
-    return exam
+    return exam if return_object else exam.toJSON()
     
 def delete_exam(id):
     exam = get_exam_with_id(id)
     exam.delete()
+
+    return exam.toJSON()

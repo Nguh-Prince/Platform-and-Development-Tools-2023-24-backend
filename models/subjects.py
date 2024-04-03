@@ -76,7 +76,7 @@ class Subject(AbstractBaseModel):
         self.id = None
 
     def toJSON(self):
-        return {
+        return json.dumps({
             "name": self.name,
             "id": self.id
-        }
+        })

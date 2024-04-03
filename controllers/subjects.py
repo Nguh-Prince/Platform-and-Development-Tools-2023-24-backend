@@ -1,17 +1,28 @@
 from models.subjects import Subject
 
-def get_all_subjects():
+def get_all_subjects(return_objects=False):
     subjects = Subject.read()
 
-    return [ subject.toJSON() for subject in subjects ]
+    if not return_objects:
+        list_of_subjects = [
+            subject.toJSON() for subject in subjects
+        ]
+        return list_of_subjects
 
-def get_subject_with_id(id):
-    return Subject.read(id).toJSON()
+    return subjects
+
+def get_subject_with_id(id, return_object=False):
+    """
+    Set return_object to True if you want to return a 
+    model instance instead of JSON
+    """
+    subject = Subject.read(id)
+    return subject if return_object else subject.toJSON()
 
 def save_subject(name, id=None):
     if id != None:
         # get subject with id
-        subject = get_subject_with_id(id)
+        subject = get_subject_with_id(id, return_object=True)
         subject.name = name
 
     else:

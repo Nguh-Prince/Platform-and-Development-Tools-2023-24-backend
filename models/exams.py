@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 from .base_model import AbstractBaseModel
 
@@ -67,3 +68,12 @@ class Exam(AbstractBaseModel):
             cursor.execute(f"DELETE FROM {self.TABLE_NAME} WHERE id=?", (self.id,))
 
         self.id = None
+
+    def toJSON(self):
+        return json.dumps({
+            "id": self.id,
+            "subject": self.subject,
+            "academic_year": self.academic_year,
+            "session": self.session,
+            "duration": self.duration
+        })
