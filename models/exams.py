@@ -70,10 +70,10 @@ class Exam(AbstractBaseModel):
         self.id = None
 
     def toJSON(self):
-        return json.dumps({
+        return {
             "id": self.id,
             "subject": self.subject,
             "academic_year": self.academic_year,
             "session": self.session,
             "duration": self.duration
-        })
+        }

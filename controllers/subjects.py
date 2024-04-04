@@ -33,7 +33,7 @@ def save_subject(name, id=None):
     return subject.toJSON()
 
 def delete_subject(id):
-    subject = get_subject_with_id(id)
+    subject = get_subject_with_id(id, return_object=True)
     subject.delete()
 
     return subject.toJSON()

@@ -9,7 +9,7 @@ def list_or_create():
     if request.method == 'GET':
         return get_all_exams()
     else:
-        submitted_data = request.POST
+        submitted_data = request.data
         files = request.files.getlist("files")
 
         subject, session, duration, academic_year = (

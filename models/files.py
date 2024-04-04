@@ -68,8 +68,8 @@ class File(AbstractBaseModel):
         self.id = None
 
     def toJSON(self):
-        return json.dumps({
+        return {
             "id": self.id,
             "exam": self.exam,
             "path": self.path
-        })
+        }
