@@ -33,7 +33,7 @@ def get_exam_with_id(id, return_object=False):
 
 def save_exam(subject, academic_year, session, duration, id=None, uploaded_files=None, return_object=False):
     if id != None:
-        exam = get_exam_with_id(id)
+        exam = get_exam_with_id(id, return_object=True)
         exam.subject, exam.academic_year, exam.session, exam.duration = (
             subject, academic_year, session, duration
         )

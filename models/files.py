@@ -38,7 +38,7 @@ class File(AbstractBaseModel):
 
                 self.id = id
 
-    def read(id=None):
+    def read(id=None, exam_id=None):
         with sqlite3.connect(PATH_TO_DB) as connection:
             cursor = connection.cursor()
 

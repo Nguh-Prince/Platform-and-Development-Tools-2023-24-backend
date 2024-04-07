@@ -1,5 +1,7 @@
 import json
 
+from models.base_model import AbstractBaseModel
+
 def parse_request_data(request):
     data = request.data.decode()
 
@@ -11,9 +13,13 @@ def parse_response_data(data):
     """
     dictionary = None
 
-    if isinstance(data, dict):
+    if isinstance(data, AbstractBaseModel):
+        print("The data is a model")
+        try:
+            dictionary = data.toJSON()
+        except AttributeError:
+            dictionary = data
+    elif isinstance(data, dict):
         dictionary = data
-    else:
-        dictionary = data.toJSON()
 
     return json.dumps(dictionary)

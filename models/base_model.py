@@ -10,7 +10,7 @@ class AbstractBaseModel(ABC, dict):
         pass
 
     @abstractmethod
-    def read():
+    def read(id=None):
         pass
 
     @abstractmethod
