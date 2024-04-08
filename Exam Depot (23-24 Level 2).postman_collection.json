@@ -173,11 +173,39 @@
 					"name": "Read All",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{SERVER_URL}}/subjects/",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"subjects",
+								""
+							]
+						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Download File",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER_URL}}/uploads/{{FILE_NAME}}",
+					"host": [
+						"{{SERVER_URL}}"
+					],
+					"path": [
+						"uploads",
+						"{{FILE_NAME}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -211,6 +239,11 @@
 		{
 			"key": "EXAM_ID",
 			"value": "3",
+			"type": "string"
+		},
+		{
+			"key": "FILE_PATH",
+			"value": "Nguh_Prince_ID_recto.jpg",
 			"type": "string"
 		}
 	]
