@@ -21,5 +21,7 @@ def parse_response_data(data):
             dictionary = data
     elif isinstance(data, dict):
         dictionary = data
+    else:
+        dictionary = data
 
     return json.dumps(dictionary)
