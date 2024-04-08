@@ -67,6 +67,12 @@ class File(AbstractBaseModel):
 
         self.id = None
 
+    def delete_all():
+        with sqlite3.connect(PATH_TO_DB) as connection:
+            cursor = connection.cursor()
+
+            cursor.execute(f"DELETE FROM {__class__.TABLE_NAME}")
+
     def toJSON(self):
         return {
             "id": self.id,
