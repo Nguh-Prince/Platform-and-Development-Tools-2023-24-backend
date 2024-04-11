@@ -4,6 +4,7 @@ import json
 from .base_model import AbstractBaseModel
 from .constants import PATH_TO_DB
 from .files import File
+from .subjects import Subject
 
 class Exam(AbstractBaseModel):
     TABLE_NAME = "Exam"
@@ -84,10 +85,14 @@ class Exam(AbstractBaseModel):
             
             return files
         
+    @property
+    def subject_object(self):
+        return Subject.read(id=self.subject)
+        
     def toJSON(self, with_files=True):
         dictionary = {
             "id": self.id,
-            "subject": self.subject,
+            "subject": self.subject_object.toJSON(),
             "academic_year": self.academic_year,
             "session": self.session,
             "duration": self.duration
